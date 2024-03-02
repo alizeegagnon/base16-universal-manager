@@ -78,7 +78,7 @@ distributions and pre-build binaries in the future.
 ### Install directly
 ```
 mkdir -p "$(go env GOPATH)/src"
-go install github.com/pinpox/base16-universal-manager@latest
+go install github.com/alizeegagnon/base16-universal-manager@badrepo
 ```
 ### Get source and build manually
 ```
