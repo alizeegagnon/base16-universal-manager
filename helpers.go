@@ -77,16 +77,20 @@ func findYAMLinRepo(repoURL string) []GitHubFile {
 
 	// Get all files from repo
 	// repoFiles, err := DownloadFileToString("https://api.github.com/repos/atelierbram/base16-atelier-schemes/contents/")
+	fmt.Println("Trying to get schemes from "+repoURL)
 	repoFiles, err := DownloadFileToString(ApiUrl)
 	if err != nil {
 		fmt.Println("Failed to get schemes from: " + repoURL + " with error '" + err.Error() + "'")
 		return nil
 	}
+	fmt.Println("keys make")
 	keys := make([]GitHubFile, 0)
+	fmt.Println("json")
 	json.Unmarshal([]byte(repoFiles), &keys)
 
 	// Create a list of .yaml files
 	var colorSchemes []GitHubFile
+	fmt.Println("for")
 	for _, v := range keys {
 		re := regexp.MustCompile(".*ya?ml")
 		if re.MatchString(v.Name) {
@@ -94,7 +98,7 @@ func findYAMLinRepo(repoURL string) []GitHubFile {
 		}
 	}
 
-	// fmt.Println("Found ", len(colorSchemes), "in repo ", repoFiles)
+	 fmt.Println("Found ", len(colorSchemes), "in repo ", repoFiles)
 	return colorSchemes
 }
 
